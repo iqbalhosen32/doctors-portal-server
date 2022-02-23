@@ -15,6 +15,9 @@ app.use(fileUpload())
 app.get('/', function (req, res) {
   res.send('Hello, Server is Online')
 })
+app.get('/doctors', function (req, res) {
+  res.send('Hello, Server is Online')
+})
 
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.yhxyp.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
@@ -99,20 +102,6 @@ client.connect(err => {
 })
 
 
-
-  // app.post('/addADoctor', (req, res) => {
-  //   const file = req.files.file;
-  //   const name = req.body.name;
-  //   const email = req.body.email;
-  //   console.log(file, name, email)
-  //   file.mv(`${__dirname}/doctors/${file.name}`, err => {
-  //     if(err){
-  //       console.log(err)
-  //       return res.status(500).send({msg: "Failed to upload image"})
-  //     }
-  //     return res.send({name: file.name, path: `/${file.name}`})
-  //   })
-  // })
 
   app.post('/addADoctor', async (req, res) => {
     const name = req.body.name;

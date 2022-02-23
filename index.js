@@ -12,6 +12,8 @@ app.use(bodyParser.json())
 app.use(express.static('doctors'));
 app.use(fileUpload())
 
+const port = 5000;
+
 
 
 
@@ -122,4 +124,4 @@ client.connect(err => {
 
 });
 
-app.listen(4400)
+app.listen(process.env.PORT || port)

@@ -12,12 +12,7 @@ app.use(bodyParser.json())
 app.use(express.static('doctors'));
 app.use(fileUpload())
 
-app.get('/', function (req, res) {
-  res.send('Hello, Server is Online')
-})
-app.get('/doctors', function (req, res) {
-  res.send('Hello, Server is Online')
-})
+
 
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.yhxyp.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
@@ -27,6 +22,11 @@ client.connect(err => {
   const appointmentCollection = client.db("doctorsPortal").collection("appointmens");
   const doctorsCollection = client.db("doctorsPortal").collection("doctors");
   const usersCollection = client.db("doctorsPortal").collection("users");
+
+  app.get('/', function (req, res) {
+    res.send('Hello, Server is Online')
+  })
+
 
   app.get('/allPatients', (req, res) => {
     appointmentCollection.find()
